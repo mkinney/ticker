@@ -1,0 +1,6 @@
+version: '3'
+services:
+  ticker:
+    image: ethfinance/ticker
+    env_file:
+      - .env
