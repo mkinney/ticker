@@ -18,7 +18,7 @@ Structure:
 mvn clean package
 ```
 
-# Deploy
+# Deploy (non Docker)
 
 Unzip the zip at `target/ethtrader-ticker-zip.zip` to the desired location.
 
@@ -37,3 +37,21 @@ bash bin/start.sh <<subreddit>> <<username>> <<password>> <<clientId>> <<secret>
 *secret* - the secret from the application created above.
 *resourceUrl* - The base of the url the ticker's configuration is located at, e.g. for the configuration above: https://raw.githubusercontent.com/jaycarey/ethtrader-ticker-conf/master/ would be the base.
 
+# Using Docker
+
+Run the following command to setup the env file:
+
+```
+cp .env.example .env
+```
+
+Then fill in the file with all the relevant details (as above but keep the variable names the same)
+
+After that you can just run it with
+
+```
+docker-compose up -d
+docker-compose logs --follow ticker
+```
+
+The only files you need to copy to the server are .env and docker-compose.yml or if you'd prefer just connect to the remote Docker instance.
