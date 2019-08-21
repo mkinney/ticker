@@ -1,4 +1,4 @@
-package org.ethtrader.ticker
+package org.ethfinance.ticker
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -157,7 +157,7 @@ fun OAuthClient.getV1MePrefs(fields: List<String>?) =
  * "threaded_messages": boolean value, "threaded_modmail": boolean value, 
  * "use_global_defaults": boolean value, } 
  **/
-fun OAuthClient.patchV1MePrefs(vararg urlParams: Pair<String, Any?>) =
+fun OAuthClient.patchV1MePrefs() =
         retry(3) { requestApi("/api/v1/me/prefs").method("patch").getResponse() }
 
 /*
@@ -2209,7 +2209,7 @@ fun OAuthClient.getMultiUserUsername(username: String, expandSrs: String?) =
  *  - uh / X-Modhash headera modhash <https://www.reddit.com/dev/api#modhashes>
  *  - expand_srsboolean value
  **/
-fun OAuthClient.deleteMultiMultipath(multipath: String, vararg urlParams: Pair<String, Any?>) =
+fun OAuthClient.deleteMultiMultipath(multipath: String) =
         retry(3) { requestApi("/api/multi/$multipath").method("delete").getResponse() }
 
 /*
@@ -2222,7 +2222,7 @@ fun OAuthClient.deleteMultiMultipath(multipath: String, vararg urlParams: Pair<S
  *  - uh / X-Modhash headera modhash <https://www.reddit.com/dev/api#modhashes>
  *  - expand_srsboolean value
  **/
-fun OAuthClient.deleteFilterFilterpath(filterpath: String, vararg urlParams: Pair<String, Any?>) =
+fun OAuthClient.deleteFilterFilterpath(filterpath: String) =
         retry(3) { requestApi("/api/filter/$filterpath").method("delete").getResponse() }
 
 /*
@@ -2321,7 +2321,7 @@ fun OAuthClient.postFilterFilterpath(filterpath: String, vararg urlParams: Pair<
  *  - uh / X-Modhash headera modhash <https://www.reddit.com/dev/api#modhashes>
  *  - expand_srsboolean value
  **/
-fun OAuthClient.putMultiMultipath(multipath: String, vararg urlParams: Pair<String, Any?>) =
+fun OAuthClient.putMultiMultipath(multipath: String) =
         retry(3) { requestApi("/api/multi/$multipath").method("put").getResponse() }
 
 /*
@@ -2344,7 +2344,7 @@ fun OAuthClient.putMultiMultipath(multipath: String, vararg urlParams: Pair<Stri
  *  - uh / X-Modhash headera modhash <https://www.reddit.com/dev/api#modhashes>
  *  - expand_srsboolean value
  **/
-fun OAuthClient.putFilterFilterpath(filterpath: String, vararg urlParams: Pair<String, Any?>) =
+fun OAuthClient.putFilterFilterpath(filterpath: String) =
         retry(3) { requestApi("/api/filter/$filterpath").method("put").getResponse() }
 
 /*
@@ -2371,7 +2371,7 @@ fun OAuthClient.getMultiMultipathDescription(multipath: String) =
  *  - { "body_md": raw markdown text, } multipathmultireddit url path
  *  - uh / X-Modhash headera modhash <https://www.reddit.com/dev/api#modhashes>
  **/
-fun OAuthClient.putMultiMultipathDescription(multipath: String, vararg urlParams: Pair<String, Any?>) =
+fun OAuthClient.putMultiMultipathDescription(multipath: String) =
         retry(3) { requestApi("/api/multi/$multipath/description").method("put").getResponse() }
 
 /*
@@ -2385,7 +2385,7 @@ fun OAuthClient.putMultiMultipathDescription(multipath: String, vararg urlParams
  *  - srnamesubreddit name
  *  - uh / X-Modhash headera modhash <https://www.reddit.com/dev/api#modhashes>
  **/
-fun OAuthClient.deleteMultiMultipathRSrname(multipath: String, srname: String, vararg urlParams: Pair<String, Any?>) =
+fun OAuthClient.deleteMultiMultipathRSrname(multipath: String, srname: String) =
         retry(3) { requestApi("/api/multi/$multipath/r/$srname").method("delete").getResponse() }
 
 /*
@@ -2399,7 +2399,7 @@ fun OAuthClient.deleteMultiMultipathRSrname(multipath: String, srname: String, v
  *  - srnamesubreddit name
  *  - uh / X-Modhash headera modhash <https://www.reddit.com/dev/api#modhashes>
  **/
-fun OAuthClient.deleteFilterFilterpathRSrname(filterpath: String, srname: String, vararg urlParams: Pair<String, Any?>) =
+fun OAuthClient.deleteFilterFilterpathRSrname(filterpath: String, srname: String) =
         retry(3) { requestApi("/api/filter/$filterpath/r/$srname").method("delete").getResponse() }
 
 /*
@@ -2442,7 +2442,7 @@ fun OAuthClient.getFilterFilterpathRSrname(filterpath: String, srname: String, m
  *  - srnamesubreddit name
  *  - uh / X-Modhash headera modhash <https://www.reddit.com/dev/api#modhashes>
  **/
-fun OAuthClient.putMultiMultipathRSrname(multipath: String, srname: String, vararg urlParams: Pair<String, Any?>) =
+fun OAuthClient.putMultiMultipathRSrname(multipath: String, srname: String) =
         retry(3) { requestApi("/api/multi/$multipath/r/$srname").method("put").getResponse() }
 
 /*
@@ -2457,7 +2457,7 @@ fun OAuthClient.putMultiMultipathRSrname(multipath: String, srname: String, vara
  *  - srnamesubreddit name
  *  - uh / X-Modhash headera modhash <https://www.reddit.com/dev/api#modhashes>
  **/
-fun OAuthClient.putFilterFilterpathRSrname(filterpath: String, srname: String, vararg urlParams: Pair<String, Any?>) =
+fun OAuthClient.putFilterFilterpathRSrname(filterpath: String, srname: String) =
         retry(3) { requestApi("/api/filter/$filterpath/r/$srname").method("put").getResponse() }
 
 /*
@@ -3451,7 +3451,7 @@ fun OAuthClient.getUsername_available(user: String?) =
  *  - Stop being friends with a user.
  *  - idA valid, existing reddit username
  **/
-fun OAuthClient.deleteV1MeFriendsUsername(username: String, vararg urlParams: Pair<String, Any?>) =
+fun OAuthClient.deleteV1MeFriendsUsername(username: String) =
         retry(3) { requestApi("/api/v1/me/friends/$username").method("delete").getResponse() }
 
 /*
@@ -3479,7 +3479,7 @@ fun OAuthClient.getV1MeFriendsUsername(username: String, id: String?) =
  *  - This endpoint expects JSON data of this format{ "name": A valid, existing 
  * reddit username, "note": a string no longer than 300 characters, } 
  **/
-fun OAuthClient.putV1MeFriendsUsername(username: String, vararg urlParams: Pair<String, Any?>) =
+fun OAuthClient.putV1MeFriendsUsername(username: String) =
         retry(3) { requestApi("/api/v1/me/friends/$username").method("put").getResponse() }
 
 /*

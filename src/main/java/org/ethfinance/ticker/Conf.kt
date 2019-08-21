@@ -1,9 +1,8 @@
-package org.ethtrader.ticker
+package org.ethfinance.ticker
 
 import com.typesafe.config.Config
 import com.typesafe.config.ConfigFactory
 import java.awt.Color
-import java.lang.Long
 import java.net.URL
 import kotlin.reflect.KFunction1
 

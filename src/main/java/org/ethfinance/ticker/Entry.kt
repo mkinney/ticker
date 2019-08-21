@@ -1,4 +1,4 @@
-package org.ethtrader.ticker
+package org.ethfinance.ticker
 
 import java.io.File
 import java.net.CookieHandler

@@ -1,4 +1,4 @@
-package org.ethtrader.ticker
+package org.ethfinance.ticker
 
 import org.jsoup.Jsoup
 import java.io.InputStream

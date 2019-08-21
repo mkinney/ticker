@@ -1,4 +1,4 @@
-package org.ethtrader.ticker
+package org.ethfinance.ticker
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -74,7 +74,8 @@ class DataReader(providers: Map<String, ProviderConf>) {
             Thread.sleep(300)
             val urlAndQuery = url.split("?")
             var target = client.build().target(urlAndQuery[0])
-            target = urlAndQuery.getOrNull(1)?.split(",")?.map { it.split("=") }?.fold(target) { t, k -> t.queryParam(k[0], k[1]) } ?: target
+            target = urlAndQuery.getOrNull(1)?.split(",")?.map { it.split("=") }?.fold(target) { t, k -> t.queryParam(k[0], k[1]) }
+                    ?: target
             println("Fetching from URL: $target")
             val request = target.request()
             val response = request.get()

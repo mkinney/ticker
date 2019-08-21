@@ -1,4 +1,4 @@
-package com.ethtrader.ticker
+package org.ethfinance.ticker
 
 import org.jsoup.Jsoup
 import org.jsoup.examples.HtmlToPlainText

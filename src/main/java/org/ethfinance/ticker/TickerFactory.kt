@@ -1,4 +1,4 @@
-package org.ethtrader.ticker
+package org.ethfinance.ticker
 
 import com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES
 import com.fasterxml.jackson.core.JsonProcessingException
@@ -130,14 +130,14 @@ class TickerFactory(private val outputDir: File, private val loadResource: (Stri
 
     private fun combineImages(images: List<BufferedImage>): BufferedImage {
         var cumulative = 0
-        val image = BufferedImage(images.sumBy { it.width }, images.first().height, TYPE_INT_ARGB)
-        val graphics = image.graphics as Graphics2D
+        val image2 = BufferedImage(images.sumBy { it.width }, images.first().height, TYPE_INT_ARGB)
+        val graphics = image2.graphics as Graphics2D
         graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, VALUE_ANTIALIAS_ON)
         images.forEach { image ->
             graphics.drawImage(image, cumulative, 0, null)
             cumulative += image.width
         }
-        return image
+        return image2
     }
 
     private fun parseSegment(data: Map<String, Map<String, BigDecimal?>?>, config: TickerConf, it: String, fontMetrics: FontMetrics): DataPoint {
@@ -188,7 +188,8 @@ class TickerFactory(private val outputDir: File, private val loadResource: (Stri
                 val shortenedValue = if (dataPoint.shorten == "Y") shorten(adjustedPrecision, "", "k", "M", "B", "T") else String.format(ENGLISH, "%,.${dataPoint.precision}f", adjustedPrecision)
 
                 val text = "${dataPoint.prefix}$shortenedValue${dataPoint.suffix}"
-                DataPoint(text, sortValueMultiplier ?: ZERO, color, dataPoint.highlight, fontMetrics.stringWidth(text), dataPoint.image?.let { loadImage(config, it, dataPoint.highlight, fontMetrics) })
+                DataPoint(text, sortValueMultiplier
+                        ?: ZERO, color, dataPoint.highlight, fontMetrics.stringWidth(text), dataPoint.image?.let { loadImage(config, it, dataPoint.highlight, fontMetrics) })
             }
         }.filterNotNull().firstOrNull() ?: throw RuntimeException("ERROR - No value [${dataPoint.valueName}] or no data point [${dataPoint.dataPointName}] in [$data]")
     }

@@ -19,10 +19,8 @@ WORKDIR /root/
 RUN apk add --no-cache ttf-dejavu unzip
 
 ## COPY packaged ZIP file
-COPY --from=0 /target/ethtrader-ticker-zip.zip app.zip
+COPY --from=0 /target/ethfinance-ticker-zip.zip app.zip
 RUN unzip app.zip && rm app.zip
 
 # use ash instead of bash
-# RUN sed -i 's/ bash/ ash/' /root/bin/start.sh
-# ENTRYPOINT sh ./bin/start.sh ${SUBREDDIT} ${USERNAME} ${PASSWORD} ${APP} ${SECRET} ${CONFIGREPO}
-ENTRYPOINT java -cp .:lib/* org/ethtrader/ticker/EntryKt $* ${SUBREDDIT} ${USERNAME} ${PASSWORD} ${APP} ${SECRET} ${CONFIGREPO}
+ENTRYPOINT java -cp .:lib/* org/ethfinance/ticker/EntryKt $* ${SUBREDDIT} ${USERNAME} ${PASSWORD} ${APP} ${SECRET} ${CONFIGREPO}

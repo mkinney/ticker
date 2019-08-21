@@ -1,10 +1,12 @@
-# ethtrader-ticker
+# ethfinance-ticker
 
 Creates a 'ticker' by pulling in various pieces of data and uploads it to reddit.
 
 # Configuration
 
-See the 'ticker.conf' https://github.com/jaycarey/ethtrader-ticker-conf at for inspiration.
+See the 'ticker.conf' https://github.com/ethfinance/ticker-conf at for inspiration.
+
+Note: Forked from https://github.com/jaycarey/ethtrader-ticker-conf.
 
 Structure:
 - `ticker.conf` - the main configuration file for the ticker. This file is quite elaborate to try and make it as flexible as possible, it's probably best to learn by example from the existing configuration above.
@@ -20,7 +22,7 @@ mvn clean package
 
 # Deploy (non Docker)
 
-Unzip the zip at `target/ethtrader-ticker-zip.zip` to the desired location.
+Unzip the zip at `target/ethfinance-ticker-zip.zip` to the desired location.
 
 # Run
 
@@ -35,7 +37,7 @@ bash bin/start.sh <<subreddit>> <<username>> <<password>> <<clientId>> <<secret>
 *password* - password of the bot.
 *clientId* - the clientId from the application created above.
 *secret* - the secret from the application created above.
-*resourceUrl* - The base of the url the ticker's configuration is located at, e.g. for the configuration above: https://raw.githubusercontent.com/jaycarey/ethtrader-ticker-conf/master/ would be the base.
+*resourceUrl* - The base of the url the ticker's configuration is located at, e.g. for the configuration above: https://raw.githubusercontent.com/jaycarey/ethfinance-ticker-conf/master/ would be the base.
 
 # Using Docker
 
